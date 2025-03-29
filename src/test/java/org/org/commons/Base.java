@@ -10,11 +10,13 @@ import static io.restassured.RestAssured.given;
 public class Base {
     public static RequestSpecification requestSpecification;
     public static RequestSpecification requestSpecificationPostman;
+    private static RequestSpecification reqResSpec;
 
 
     public Base() {
         RestAssured.baseURI = ConfigReader.getProperty("url");
         RestAssured.baseURI = ConfigReader.getProperty("base_url");
+        RestAssured.baseURI = ConfigReader.getProperty("reqres_url");
 
         requestSpecification =  given()
                 .log().all()
@@ -28,6 +30,11 @@ public class Base {
                 .header("Content-Type", "application/json")
                 .header("Cookie", "sails.sid=s%3AAq8L38u6JRZWkGVg9m1wNRuWfN4y7Upv.3EQ4hZBZQhve9o0nKSuiII3hVfLbFzZggs4fge1RRAg");
 
+        reqResSpec = given()
+                .log().all()
+                .header("Content-Type", "application/json");
+
+
     }
     public Response postRequest(Object body, String endPoint){
         return requestSpecification.body(body).post(endPoint);
@@ -39,5 +46,9 @@ public class Base {
 
     public Response getPostManRequest(String endPoint){
         return requestSpecificationPostman.get(endPoint);
+    }
+
+    public Response reqResPostRequest(Object body, String endpoint){
+        return reqResSpec.body(body).post(endpoint);
     }
 }

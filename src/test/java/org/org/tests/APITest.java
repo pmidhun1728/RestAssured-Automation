@@ -1,6 +1,7 @@
 package org.org.tests;
 
 import com.org.utils.CreateData;
+import com.org.utils.LoginData;
 import com.org.utils.PostManData;
 import io.restassured.response.Response;
 import org.org.commons.Base;
@@ -44,5 +45,15 @@ public class APITest extends Base {
         System.out.println("URL: "+ getUrl);
 
         softAssert.assertEquals(getHost, "postman-echo.com");
+    }
+
+    @Test
+    public void reqResPostCall(){
+        LoginData loginData = new LoginData("eve.holt@reqres.in", "cityslicka");
+        Response response = reqResPostRequest(loginData, "");
+        response.getBody().prettyPrint();
+        String token = response.jsonPath().getString("token");
+        System.out.println("Token ID is: " +token);
+        softAssert.assertEquals(token, "QpwL5tke4Pnpja7X4");
     }
 }
