@@ -1,12 +1,11 @@
 package org.org.tests;
 
-import com.org.utils.CreateData;
-import com.org.utils.LoginData;
-import com.org.utils.PostManData;
+import com.org.utils.*;
 import io.restassured.response.Response;
 import org.org.commons.Base;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 
 public class APITest extends Base {
 
@@ -14,8 +13,6 @@ public class APITest extends Base {
 
     @Test
     public void postCall(){
-
-
         CreateData createData = new CreateData("b8096ec7-2150-405f-84f5-ae99864b3e96", true);
         Response response =  postRequest(createData, "");
 
@@ -55,5 +52,18 @@ public class APITest extends Base {
         String token = response.jsonPath().getString("token");
         System.out.println("Token ID is: " +token);
         softAssert.assertEquals(token, "QpwL5tke4Pnpja7X4");
+    }
+
+    @Test
+    public void goRestPostCall(){
+        UserCreation userCreation = new UserCreation(FakerClass.getId(), FakerClass.getName(), FakerClass.getEmail(), "Male", "Active" );
+
+        Response response = goRestPostRequest(userCreation, "/public/v2/users");
+        response.jsonPath().prettyPrint();
+
+        softAssert.assertEquals(response.getStatusCode(), 201);
+        String getGender = response.jsonPath().getString("gender");
+        System.out.println(getGender);
+
     }
 }
