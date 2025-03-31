@@ -1,16 +1,15 @@
 package org.org.tests;
 
-import com.org.utils.*;
-import com.org.utils.googledata.DeleteData;
-import com.org.utils.googledata.Location;
-import com.org.utils.googledata.LocationData;
-import com.org.utils.googledata.PutData;
+import utils.commonutils.FakerClass;
 import io.restassured.response.Response;
 import org.org.commons.BaseGoogle;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import utils.googleutils.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GoogleTest extends BaseGoogle {
 

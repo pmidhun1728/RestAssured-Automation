@@ -1,6 +1,6 @@
 package org.org.tests;
 
-import com.org.utils.*;
+import utils.commonutils.*;
 import io.restassured.response.Response;
 import org.org.commons.Base;
 import org.testng.annotations.Test;

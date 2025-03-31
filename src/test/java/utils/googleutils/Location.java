@@ -1,4 +1,4 @@
-package com.org.utils.googledata;
+package utils.googleutils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

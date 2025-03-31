@@ -1,9 +1,7 @@
-package com.org.utils;
+package utils.commonutils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @AllArgsConstructor

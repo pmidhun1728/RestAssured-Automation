@@ -1,4 +1,4 @@
-package com.org.utils;
+package utils.commonutils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

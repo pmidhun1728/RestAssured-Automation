@@ -1,6 +1,6 @@
 package org.org.commons;
 
-import com.org.utils.ConfigReader;
+import utils.commonutils.ConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
