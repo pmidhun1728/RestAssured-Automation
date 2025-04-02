@@ -1,5 +1,6 @@
 package org.org.tests;
 
+import groovy.util.logging.Log4j;
 import io.restassured.response.Response;
 import org.org.commons.BaseGoogle;
 import org.testng.annotations.Test;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LibraryTest extends BaseGoogle {
+    private static Log4j log;
 
     SoftAssert softAssert = new SoftAssert();
 

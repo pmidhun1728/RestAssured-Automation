@@ -35,6 +35,8 @@ public class APITest extends Base {
     @Test
     public void GetPostManCall(){
         Response response = getPostManRequest("get");
+
+        response.getBody().prettyPrint();
         String getHost = response.jsonPath().getString("headers.host");
         String getUrl = response.jsonPath().getString("url");
 

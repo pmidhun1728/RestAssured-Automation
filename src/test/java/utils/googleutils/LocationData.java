@@ -10,7 +10,7 @@ import java.util.List;
 public class LocationData {
 
     private Location location;
-    private int accuracy;
+        private int accuracy;
     private String name;
     private String phone_number;
     private String address;
