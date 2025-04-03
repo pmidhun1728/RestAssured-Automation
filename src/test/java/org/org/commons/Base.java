@@ -18,6 +18,7 @@ public class Base {
         RestAssured.baseURI = ConfigReader.getProperty("url");
         RestAssured.baseURI = ConfigReader.getProperty("base_url");
         RestAssured.baseURI = ConfigReader.getProperty("reqres_url");
+        RestAssured.baseURI = ConfigReader.getProperty("reqres_baseurl");
 
         requestSpecification =  given()
                 .log().all()
@@ -43,6 +44,9 @@ public class Base {
                 .header("Accept", "application/json")
                 .header("Cookie", "_gorest_session=r4Si7qIqN038pfH7KWXP3d3uwcghgGIbwkreRm2t0tkkmzEt9xq9hPs2Td0pU7CMM6mJCGOow2TCqtIgjMhZEqBwNiT52KsCVJQbaD%2FWpEwUaV41Ns2X08r8oFAIrVk2Mtnm9pZubA7F3VlSXiHjoop1FqMabn0fLjHQsn7eLvBIyOH9LaALIPjLXLwuRGBD2Umf26R1uWLQcBRY8pdmOtO9STz0uCpsr2PYtcyEx5wjCwaB%2B%2B0gDPo%2Ba8VpoGxKpyq96HvO4aS9ZzP8cRXNI%2BCmSKBmnpJaRg2pG1koIVtW5hMOXBtCO3z2TPTrE9QUhnIE2G5naP4p6LXA8a4DsKSonT4tdHCX%2BzVvQ2qllYLL8muINNAATbell%2BenOrqzHgQgL3Qbfb0d3I0%3D--lZn%2FP88V6meiA8mk--1h4BY8xXAZP8RNIGLk94Ig%3D%3D");
 
+        goRestSpec = given()
+                .log().everything()
+                .header("Content-Type", "application/json");
 
     }
     public Response postRequest(Object body, String endPoint){
@@ -63,5 +67,12 @@ public class Base {
 
     public Response goRestPostRequest(Object body, String endpoint){
         return reqResSpec.body(body).post(endpoint);
+    }
+
+    public Response goRestSpecRequest(int pageNumber, String endPoint){
+        return goRestSpec
+                .log().everything()
+                .queryParam("page", pageNumber)
+                .get(endPoint);
     }
 }

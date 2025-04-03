@@ -1,10 +1,15 @@
 package org.org.tests;
 
+import org.testng.Assert;
 import utils.commonutils.*;
 import io.restassured.response.Response;
 import org.org.commons.Base;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 public class APITest extends Base {
@@ -67,5 +72,29 @@ public class APITest extends Base {
         String getGender = response.jsonPath().getString("gender");
         System.out.println(getGender);
 
+    }
+    @Test
+    public void goRestSpecRequest(){
+
+        int random = new Random().nextInt(5)+1;
+        Response response = goRestSpecRequest(random, "/users");
+        response.getBody().prettyPrint();
+
+        List<Map<String, Object>> users = response.jsonPath().getList("data");
+
+        Boolean found = false;
+        for(Map<String, Object> user: users){
+            if(user.get("id").equals(7)){
+                Object getId = user.get("id");
+                System.out.println("ID: "+getId);
+                found =true;
+                Assert.assertEquals(getId, 7);
+                break;
+            }
+        }
+
+        if(!found){
+            System.out.println("There is no users that are matching with the Page Number:"+random);
+        }
     }
 }
